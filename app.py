@@ -13,10 +13,15 @@ from flask import Flask, render_template
 #-------------------------
 app = Flask(__name__)
 
-#主畫面
+#index
 @app.route('/')
 def index():
     return render_template('index.html') 
+
+#note
+@app.route('/note')
+def note():
+    return render_template('note.html') 
 
 #-------------------------
 # 在主程式註冊各個服務
