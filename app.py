@@ -18,6 +18,14 @@ app = Flask(__name__)
 def index():
     return render_template('index.html') 
 
+@app.route('/login')
+def login():
+    return render_template('login.html') 
+
+@app.route('/student')
+def student():
+    return render_template('student.html') 
+
 #-------------------------
 # 在主程式註冊各個服務
 #-------------------------
