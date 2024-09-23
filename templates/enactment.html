@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修改密碼</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<div class="sidebar">
+    <a href="#" class="back-link">&lt;主畫面</a>
+</div>
+<body>
+    <div class="header"></div>
+    <div class="container">
+        <div class="profile">
+            <img src="profile.png" alt="Profile Picture" class="profile-pic">
+            <!-- 用 <a> 標籤包裹變更密碼按鈕 -->
+            <a href="password.html">
+                <button class="change-password-btn">變更密碼</button>
+            </a>
+        </div>
+        <form>
+            <div class="form-group">
+                <label for="name">姓名：</label>
+                <input type="text" id="name" name="name" value="王小明" disabled>
+            </div>
+            <div class="form-group">
+                <label for="account">帳號：</label>
+                <input type="text" id="account" name="account" value="ming@ntub.edu.tw" disabled>
+            </div>
+            <div class="form-group">
+                <label for="grade">年級：</label>
+                <input type="text" id="grade" name="grade" value="五年級" disabled>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="confirm-button">確認</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

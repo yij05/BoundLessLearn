@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字聊天室</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<div class="sidebar">
+    <a href="#" class="back-link">&lt;主畫面</a>
+</div>
+<body>
+    <div class="header">
+        <h2>小明's 討論室</h2>
+    </div>
+    <div class="container">
+        <div class="chat-box" id="chat-box">
+            <!-- 聊天記錄將顯示在這裡 -->
+        </div>
+        <div class="form-group">
+            <input type="text" id="message-input" placeholder="輸入訊息...">
+            <button type="button" class="send-button" onclick="sendMessage()">送出</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const chatBox = document.getElementById('chat-box');
+            const messageInput = document.getElementById('message-input');
+            const message = messageInput.value;
+
+            if (message.trim() !== '') {
+                const newMessage = document.createElement('p');
+                newMessage.textContent = message;
+                chatBox.appendChild(newMessage);
+                messageInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
