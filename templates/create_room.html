@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>創建討論室</title>
+</head>
+<body>
+    <h1>創建討論室</h1>
+    <form method="POST">
+        <label for="room_name">討論室名稱:</label>
+        <input type="text" id="room_name" name="room_name" required>
+        <button type="submit">創建</button>
+    </form>
+    <a href="{{ url_for('student.student_index') }}">返回首頁</a>
+</body>
+</html>

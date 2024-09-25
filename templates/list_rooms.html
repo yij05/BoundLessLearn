@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>討論室列表</title>
+</head>
+<body>
+    <h1>討論室列表</h1>
+    <ul>
+        {% for room in rooms %}
+        <li>{{ room[1] }} (創建者: {{ room[2] }})</li>  <!-- 假設 room_name 在索引 1，created_by 在索引 2 -->
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('student.student_index') }}">返回首頁</a>
+</body>
+</html>

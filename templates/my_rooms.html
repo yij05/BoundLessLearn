@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>我的討論室</title>
+</head>
+<body>
+    <h1>我的討論室</h1>
+    <ul>
+        {% for room in rooms %}
+            <li><a href="{{ url_for('student.view_room', room_id=room[0]) }}">{{ room[1] }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

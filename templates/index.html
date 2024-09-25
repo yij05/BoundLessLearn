@@ -1,90 +1,11 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="zh-Hant">
 <head>
-<meta charset="utf-8">
-<title>BoundLess Learn</title>
-<!-- 連結思源中文及css -->
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
-<link href="/static/css/chart.css" rel="stylesheet">
-<link href="/static/css/menu.css" rel="stylesheet"/>  
-<link href="/static/css/main.css" rel="stylesheet"/>       
-<!------------------------->
+    <meta charset="UTF-8">
+    <title>首頁</title>
 </head>
-   
 <body>
-    <!--**************************-->
-    <div class="container">    
-        <!--~~~~~~~~~~~~~~~~~-->
-        <div class="header">           
-        </div>        
-        
-        <!--~~~~~~~~~~~~~~~~~-->
-
-        <div class="sideMenu">
-          <form>
-            <p>Hi Hello</p>
-          </form>
-          <nav>
-            <a href="#"><i class="fas fa-sitemap"></i>我的筆記</a>
-            <a href="#"><i class="fas fa-chalkboard"></i>已加星號</a>
-            <a href="#"><i class="fas fa-book-reader"></i>點數專區</a>
-            <a href="#"><i class="fas fa-user-graduate"></i>設定</a>
-            <a href="#"><i class="fas fa-trophy"></i>切了就會</a>
-          </nav>
-        </div>
-
-        <!--
-        <aside class="sidebar">
-          <nav class="nav">
-            <h2>Hi！小明<h2>
-            <ul>
-              <li class="active"><a href="#">Welcome</a></li>
-              <li><a href="#">Who We Are</a></li>
-              <li><a href="#">What We Do</a></li>
-              <li><a href="#">Get In Touch</a></li>
-            </ul>
-          </nav>
-        </aside>
-        -->
-        
-        <!--~~~~~~~~~~~~~~~~~--> 
-        <div class="content">
-
-          <div class="circle_bg">
-            <div class="part bg-blue pos01">
-              數學
-            </div>
-            <div class="part bg-red pos02">
-              英文
-            </div>
-            <div class="part bg-green pos03">
-              國文
-            </div>
-          </div>
-
-          <!--
-          <section class="twitter">
-            <div class="container">
-              <a target="_blank" href="https://twitter.com/ReisnerShawn">
-                <img class="social" src="https://cdn1.iconfinder.com/data/icons/logotypes/32/twitter-128.png">
-              </a>
-              <p>Follow me</p>
-              <p>on Twitter!</p>
-            </div>
-          </section> 
-          -->
-          
-        </div>    
-           
-        
-        <!--~~~~~~~~~~~~~~~~~--> 
-        <div class="footer">
-               
-        </div>  
-    </div>
-    <!--**************************-->
-
-    
+    <h1>歡迎，{{ name }}！</h1>
+    <!-- <a href="{{ url_for('student.logout') }}">登出</a> -->
 </body>
-   
 </html>

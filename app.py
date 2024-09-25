@@ -1,38 +1,18 @@
-#-----------------------
-# 匯入模組
-#-----------------------
-from flask import Flask, render_template 
+from flask import Flask, redirect, url_for, render_template, session
+from services.student.app import student_bp  # 導入 student 藍圖
+from services.student.room import room_bp  # 導入 room 藍圖
 
-#-----------------------
-# 匯入各個服務藍圖
-#-----------------------
-# from services.employee.app import employee_bp
-
-#-------------------------
-# 產生主程式, 加入主畫面
-#-------------------------
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'itismysecretkey'
 
-#主畫面
+# 根路由，將 "/" 重定向到 "/student/"
 @app.route('/')
 def index():
-    return render_template('index.html') 
+    return redirect(url_for('student.student_index'))
 
-@app.route('/login')
-def login():
-    return render_template('login.html') 
+# 註冊藍圖
+app.register_blueprint(student_bp, url_prefix='/student')
+app.register_blueprint(room_bp, url_prefix='/student/room')  # 註冊 room 藍圖
 
-@app.route('/student')
-def student():
-    return render_template('student.html') 
-
-#-------------------------
-# 在主程式註冊各個服務
-#-------------------------
-# app.register_blueprint(employee_bp, url_prefix='/employee')
-
-#-------------------------
-# 啟動主程式
-#-------------------------
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
