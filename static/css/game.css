@@ -1,0 +1,21 @@
+@charset "utf-8";
+@import "color.css";
+
+
+div.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 350px;
+}
+
+.button {
+    text-align: center;
+    width: 150px;
+    height: 150px;
+}
+
+.button:nth-child(1), .button:nth-child(2) {
+    margin-right: 70px;
+}

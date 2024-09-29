@@ -1,0 +1,26 @@
+@charset "utf-8";
+@import "color.css";
+
+
+div.content{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    height: 600px;
+    width: 1000px;
+    background-color: white;
+    text-align: center;
+    font-size: 20px;
+    
+}
+
+.button {
+    text-align: center;
+    width: 120px;
+    height: 50px;
+    margin-top: 70px;
+}
+
+.button:nth-child(3), .button:nth-child(4), .button:nth-child(5) {
+    margin-right: 50px;
+}
