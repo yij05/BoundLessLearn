@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>註冊</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>歡迎加入BoundLess Learn</h1>
+    </div>
+    <div class="container">
+        <form>
+            <div class="form-group">
+                <label for="name">姓名：</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="username">帳號：</label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="password">密碼：</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">確認密碼：</label>
+                <input type="password" id="confirm-password" name="confirm-password">
+            </div>
+            <div class="form-group">
+                <label for="grade">年級：</label>
+                <select id="grade" name="grade">
+                    <option value="" disabled selected>請選擇年級</option>
+                    <option value="1">一年級</option>
+                    <option value="2">二年級</option>
+                    <option value="3">三年級</option>
+                    <option value="4">四年級</option>
+                    <option value="5">五年級</option>
+                    <option value="6">六年級</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="confirm-button">確認</button>
+            </div>
+        </form>
+    </div>
+    <div class="footer">           
+    </div>
+</body>
+</html>

@@ -7,6 +7,21 @@ body {
     margin: 0;
 }
 
+body > .container .confirm-button {
+    margin: 20px auto 0 auto; 
+    padding: 10px 20px;
+    background-color: #cce7f0;
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+body > .container .confirm-button:hover {
+    color: #000;
+    background-color: #ddd;
+}
+
 .sidebar {
     position: fixed;
     top: 0;
@@ -18,7 +33,7 @@ body {
 }
 
 .sidebar .back-link {
-    color: black;
+    color: #000;
     text-decoration: none;
     font-weight: bold;
 }
@@ -31,16 +46,66 @@ body {
     background-color: #cce7f0;
     width: 100%;
     text-align: center;
-    padding: 10px 0;
+    padding: 5px 0; /* 減少上下的 padding */
+    margin-bottom: 10px; /* 減少 header 與 .container 之間的距離 */
 }
 
 .container {
     background-color: white;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+    margin-top: 10px; /* 減少與 header 的間距 */
     width: 400px;
     border-radius: 10px;
+}
+
+.add-btn {
+    display: block;               
+    margin: 20px auto;          
+    width: 150px;               
+    font-size: 16px;           
+    padding: 10px;              
+    border: 2px solid #000;     
+    border-radius: 10px;        
+    background-color: #fff;     
+    color: #000;                
+    cursor: pointer;            
+    text-decoration: none;      
+    text-align: center;      
+}
+
+.add-btn:hover {
+    background-color: #e7f3f5; 
+}
+
+
+.room-info {
+    display: flex;                
+    justify-content: space-between; 
+    align-items: center;          
+}
+
+.join-btn {
+    color: #007BFF;               
+    text-decoration: none;        
+    padding: 5px 10px;            
+    border: 1px solid #007BFF;     
+    border-radius: 5px;            
+    cursor: pointer;               
+}
+
+.join-btn:hover {
+    background-color: #007BFF;     
+    color: #fff;                   
+}
+
+.room {
+    border: 2px solid black;       
+    border-radius: 10px;          
+    padding: 10px;                 
+    margin-bottom: 10px;            
+    display: flex;                  
+    flex-direction: column;         
 }
 
 .chat-box {
@@ -67,6 +132,10 @@ body {
     margin-right: 10px;
 }
 
+.form-group label {
+    white-space: nowrap;
+}
+
 .send-button {
     background-color: #cce7f0;
     border: none;
@@ -85,4 +154,16 @@ p {
     padding: 5px;
     background-color: #e7f3f5;
     border-radius: 5px;
+}
+
+.timer {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 100px;
+    border: 1.5px solid #000;
 }

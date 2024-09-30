@@ -6,23 +6,23 @@
     <title>文字聊天室</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<div class="sidebar">
-    <a href="#" class="back-link">&lt;主畫面</a>
-</div>
 <body>
+    <div class="sidebar">
+        <a href="#" class="back-link">&lt;主畫面</a>
+    </div>
+
     <div class="header">
         <h2>小明's 討論室</h2>
     </div>
     <div class="container">
         <div class="chat-box" id="chat-box">
-            <!-- 聊天記錄將顯示在這裡 -->
         </div>
         <div class="form-group">
             <input type="text" id="message-input" placeholder="輸入訊息...">
             <button type="button" class="send-button" onclick="sendMessage()">送出</button>
         </div>
     </div>
-
+    <div class="timer" id="timer">00:00:00</div>
     <script>
         function sendMessage() {
             const chatBox = document.getElementById('chat-box');
@@ -36,6 +36,22 @@
                 messageInput.value = '';
             }
         }
+        let seconds = 0, minutes = 0, hours = 0;
+        setInterval(() => {
+            seconds++;
+            if (seconds === 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes === 60) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
+            document.getElementById('timer').textContent =
+                (hours < 10 ? '0' + hours : hours) + ':' +
+                (minutes < 10 ? '0' + minutes : minutes) + ':' +
+                (seconds < 10 ? '0' + seconds : seconds);
+        }, 1000);
     </script>
 </body>
 </html>
