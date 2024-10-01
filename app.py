@@ -1,18 +1,34 @@
-from flask import Flask, redirect, url_for, render_template, session
-from services.student.app import student_bp  # 導入 student 藍圖
-from services.student.room import room_bp  # 導入 room 藍圖
+from flask import Flask, redirect, url_for, session, render_template, request, flash
+from utils.common import get_student
+from services.student.room import room_bp
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'itismysecretkey'
+app.secret_key = 'your_secret_key'  # 設定 Flask 的 session 加密金鑰
+app.register_blueprint(room_bp, url_prefix='/room')
 
-# 根路由，將 "/" 重定向到 "/student/"
-@app.route('/')
-def index():
-    return redirect(url_for('student.student_index'))
+# 登入頁面
+@app.route('/', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        stuno = request.form['stuno']
+        password = request.form['password']
+        student = get_student(stuno, password)
+        
+        if student:
+            session['stuno'] = student['stuno']
+            flash(f"歡迎, {student['stuname']}!")
+            return redirect(url_for('room.list_rooms'))
+        else:
+            flash("無效的學號或密碼，請重試！")
+    
+    return render_template('login.html')
 
-# 註冊藍圖
-app.register_blueprint(student_bp, url_prefix='/student')
-app.register_blueprint(room_bp, url_prefix='/student/room')  # 註冊 room 藍圖
+# 登出
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash("您已成功登出")
+    return redirect(url_for('login'))
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
