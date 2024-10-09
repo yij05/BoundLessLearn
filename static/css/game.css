@@ -10,12 +10,39 @@ div.content {
     height: 350px;
 }
 
-.button {
+.buttonc {
     text-align: center;
     width: 150px;
     height: 150px;
+    margin-right: 70px;
+    background-color: #F3CBDE;
+    font-size: 20px;
+    border-radius:75px;
 }
 
-.button:nth-child(1), .button:nth-child(2) {
+.buttonm {
+    text-align: center;
+    width: 150px;
+    height: 150px;
     margin-right: 70px;
+    background-color: #CBF3CD;
+    font-size: 20px;
+    border-radius:75px;
+}
+
+.buttone {
+    text-align: center;
+    width: 150px;
+    height: 150px;
+    background-color: #F2F3CB;
+    font-size: 20px;
+    border-radius:75px;
+}
+
+.buttonc:hover, .buttonm:hover, .buttone:hover {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    font-size: 30px;
+    transition: 0.5s;
 }
