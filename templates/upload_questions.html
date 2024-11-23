@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上傳題目</title>
+    <link href="/static/imgs/BoundLess Learn.png" rel="shortcut icon">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" r
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <a href="/admin/dashboard" class="back-link">&lt;上一頁</a>
+    <div class="container mt-4">
+        <h1>上傳題目</h1>
+
+        <!-- 提示訊息 -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <script>
+                    // 在頁面加載後彈出訊息
+                    window.onload = function() {
+                        alert("{{ messages[0] }}"); // 顯示 Flash 消息
+                    };
+                </script>
+            {% endif %}
+        {% endwith %}
+
+        <!-- 表單 -->
+        <form method="POST" enctype="multipart/form-data" id="uploadForm">
+            <div class="mb-3">
+                <label for="question" class="form-label">問題：</label>
+                <input type="text" class="form-control" id="question" name="question" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="correct" class="form-label">正確答案：</label>
+                <select class="form-select" id="correct" name="correct" required>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="option_a" class="form-label">選項 A：</label>
+                <input type="text" class="form-control" id="option_a" name="option_a" required>
+            </div>
+            <div class="mb-3">
+                <label for="option_b" class="form-label">選項 B：</label>
+                <input type="text" class="form-control" id="option_b" name="option_b" required>
+            </div>
+            <div class="mb-3">
+                <label for="option_c" class="form-label">選項 C：</label>
+                <input type="text" class="form-control" id="option_c" name="option_c" required>
+            </div>
+            <div class="mb-3">
+                <label for="option_d" class="form-label">選項 D：</label>
+                <input type="text" class="form-control" id="option_d" name="option_d" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="subject" class="form-label">科目：</label>
+                <select class="form-select" id="subject" name="subject" required>
+                    <option value="數學">國文</option>
+                    <option value="國文">英文</option>
+                    <option value="英文">數學</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="session" class="form-label">學年：</label>
+                <select class="form-select" id="session" name="session" required>
+                    <option value="113">113學年</option>
+                    <option value="114">114學年</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="photo1" class="form-label">圖片 1：</label>
+                <input type="file" class="form-control" id="photo1" name="photo1">
+            </div>
+            <div class="mb-3">
+                <label for="photo2" class="form-label">圖片 2：</label>
+                <input type="file" class="form-control" id="photo2" name="photo2">
+            </div>
+
+            <button type="submit" class="btn btn-primary">提交題目</button>
+        </form>
+    </div>
+
+    <script>
+        // 清空表單內容
+        document.getElementById('uploadForm').addEventListener('submit', function (event) {
+            setTimeout(function () {
+                document.getElementById('uploadForm').reset(); // 清空表單
+            }, 100); // 延遲清空，確保提交後 Flash 消息正常顯示
+        });
+    </script>
+</body>
+</html>

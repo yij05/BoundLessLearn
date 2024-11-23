@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英文成績排行榜</title>
+    <link href="/static/imgs/BoundLess Learn.png" rel="shortcut icon">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/main.css" rel="stylesheet"/>
+</head>
+<body>
+    <header>
+        <a href="/exam" class="back-link">&lt;上一頁</a>
+        <h1 class="text-center">英文成績排行榜</h1>
+    </header>
+    <main class="container mt-4">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>暱稱</th>
+                    <th>總分</th>  <!-- 修改為總分 -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in scores %}
+                <tr>
+                    <td>{{ record.stuname }}</td>
+                    <td>{{ record.total_score }}</td>  <!-- 修改為顯示總得分 -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>選擇測驗項目</title>
+    <link href="/static/imgs/BoundLess Learn.png" rel="shortcut icon">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/exam_list.css" rel="stylesheet"/>
+    <link href="/static/css/main.css" rel="stylesheet"/>
+</head>
+<body>
+    <header>
+        <a href="/exam" class="back-link">&lt;上一頁</a>
+    </header>
+
+    <div class="container_mt-5">
+        <!-- 113歷屆試題按鈕，觸發模態框 -->
+        <button type="button" class="btn_cexam" data-toggle="modal" data-target="#chineseModal">
+            國文113歷屆試題
+        </button>
+        
+        <!-- 113歷屆試題按鈕，觸發模態框 -->
+        <button type="button" class="btn_eexam" data-toggle="modal" data-target="#englishModal">
+            英文113歷屆試題
+        </button>
+        
+        <!-- 113歷屆試題按鈕，觸發模態框 -->
+        <button type="button" class="btn_mexam" data-toggle="modal" data-target="#mathModal">
+            數學113歷屆試題
+        </button>
+    </div>
+
+    <!-- 國文模態框 -->
+    <div class="modal fade" id="chineseModal" tabindex="-1" aria-labelledby="chineseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="chineseModalLabel">會考國文</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-warning">
+                        <strong>注意！</strong><br/>
+                        1. 所有試題均為四選一的選擇題，答錯不倒扣。<br/>
+                        2. 請依照題意從四個選項中選出一個正確或最佳的答案。
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="startQuiz('國文', '113')">開始測驗</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 英文模態框 -->
+    <div class="modal fade" id="englishModal" tabindex="-1" aria-labelledby="englishModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="englishModalLabel">會考英文</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-warning">
+                        <strong>注意！</strong><br/>
+                        1. 所有試題均為四選一的選擇題，答錯不倒扣。<br/>
+                        2. 請依照題意從四個選項中選出一個正確或最佳的答案。
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="startQuiz('英文', '113')">開始測驗</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 數學模態框 -->
+    <div class="modal fade" id="mathModal" tabindex="-1" aria-labelledby="mathModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mathModalLabel">會考數學</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-warning">
+                        <strong>注意！</strong><br/>
+                        1. 所有試題均為四選一的選擇題，答錯不倒扣。<br/>
+                        2. 請依照題意從四個選項中選出一個正確或最佳的答案。
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="startQuiz('數學', '113')">開始測驗</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script>
+        function startQuiz(subject, session) {
+            // 在這裡進行頁面跳轉
+            window.location.href = '/exam/quiz?subject=' + subject + '&session=' + session;
+        }
+    </script>
+</body>
+</html>

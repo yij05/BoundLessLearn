@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>測驗結果</title>
+    <link href="/static/imgs/BoundLess Learn.png" rel="shortcut icon">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>測驗結果</h1>
+    </header>
+    <main class="container mt-4">
+        <h2>你的分數：{{ score }} / {{ total_questions }}</h2>
+
+        {% if incorrect_questions %}
+            <h3>錯誤題目</h3>
+            {% for question in incorrect_questions %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5>{{ question.question_id }}.{{ question.question_text }}</h5>
+                        {% if question.photo1 %}
+                            <img src="{{ question.photo1 }}" alt="圖片1" class="img-fluid mb-2">
+                        {% endif %}
+                        {% if question.photo2 %}
+                            <img src="{{ question.photo2 }}" alt="圖片2" class="img-fluid mb-2">
+                        {% endif %}
+                        
+                        <p>選項:</p>
+                        <ul>
+                            <li>A: {{ question.options.A }}</li>
+                            <li>B: {{ question.options.B }}</li>
+                            <li>C: {{ question.options.C }}</li>
+                            <li>D: {{ question.options.D }}</li>
+                        </ul>
+                        
+                        <p>您的答案: {{ question.student_answer }}</p>
+                        <p>正確答案: {{ question.correct_answer }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>恭喜你，所有題目都答對了！</p>
+        {% endif %}
+
+        <a href="{{ url_for('main_bp.main') }}" class="btn btn-primary">返回首頁</a>
+        <a href="/exam/list" class="btn btn-secondary">返回測驗列表</a>
+    </main>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

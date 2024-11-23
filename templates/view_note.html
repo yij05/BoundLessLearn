@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ note[2] }}</title>
+    <link href="/static/imgs/BoundLess Learn.png" rel="shortcut icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <a href="{{ url_for('note_bp.note_list') }}">返回筆記清單</a>
+
+    <div class="note-content">
+        <h1>{{ note[2] }}</h1> <!-- 筆記標題 -->
+        <p>{{ note[3] }}</p> <!-- 筆記內容 -->
+        {% if note[6] %} <!-- 假設 note[6] 是圖片的 URL -->
+            <img src="{{ url_for('static', filename='photos/' + note[6]) }}" alt="筆記圖片" style="max-width: 100%; border-radius: 5px;">
+        {% endif %}
+    </div>
+
+    <h2>留言</h2>
+    <div class="comments-container">
+        {% if comments %}
+            {% for comment in comments %}
+                <div class="comment">
+                    <p><strong>{{ comment[2] }}</strong> - {{ comment[0] }}</p> <!-- 使用者名稱 - 留言內容 -->
+                    <small>{{ comment[1] }}</small> <!-- 留言時間 -->
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>目前沒有留言。</p>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>開始測驗</title>
+    <link href="/static/imgs/BoundLess Learn.png" rel="shortcut icon">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header></header>
+    <main id="quiz-container" class="container mt-4">
+        <h2>科目：{{ subject }} | 測驗年份：{{ session }}</h2>
+        
+        <form id="quiz-form">
+            {% for question in questions %}
+            <div class="card mb-3 question" data-question-id="{{ question.que_id }}">
+                <div class="card-body">
+                    <h5>{{ question.que_id }}. {{ question.question }}</h5>
+                    {% if question.photo1 %}
+                        <img src="{{ question.photo1 }}" alt="圖片1" class="img-fluid mb-2">
+                    {% endif %}
+                    {% if question.photo2 %}
+                        <img src="{{ question.photo2 }}" alt="圖片2" class="img-fluid mb-2">
+                    {% endif %}
+                    <div class="mt-3">
+                        {% for key, option in question.options.items() %}
+                        <div class="form-check">
+                            <input 
+                                class="form-check-input" 
+                                type="radio" 
+                                name="question_{{ question.que_id }}" 
+                                value="{{ key }}" 
+                                id="option_{{ question.que_id }}_{{ key }}">
+                            <label class="form-check-label" for="option_{{ question.que_id }}_{{ key }}">
+                                {{ key }}. {{ option }}
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <button type="button" class="btn btn-primary" onclick="submitQuiz()">提交測驗</button>
+        </form>
+    </main>
+
+    <!-- 確認提交模態框 -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmModalLabel">確定要交卷嗎？</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>請務必確認您已完成作答及檢查，測驗卷一旦送出將會進行結果統計。</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="confirmSubmit">確定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script>
+        function submitQuiz() {
+            // 顯示確認模態框
+            $('#confirmModal').modal('show');
+        }
+
+        // 確定提交的邏輯
+        document.getElementById('confirmSubmit').onclick = function() {
+            const studentAnswers = {};
+            const questions = document.querySelectorAll('.question');
+
+            // 收集學生答案
+            questions.forEach(question => {
+                const questionId = question.getAttribute('data-question-id'); // 獲取問題 ID
+                const selectedOption = question.querySelector('input[type="radio"]:checked'); // 獲取選中答案
+                if (selectedOption) {
+                    studentAnswers[questionId] = selectedOption.value; // 儲存答案
+                }
+            });
+
+            // 確保至少有一個答案被提交
+            if (Object.keys(studentAnswers).length === 0) {
+                alert('請完成至少一題作答！');
+                return;
+            }
+
+            // 發送答案到後端
+            fetch('/exam/submit_answers?subject={{ subject }}&session={{ session }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(studentAnswers) // 將學生答案轉換為 JSON 字串
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === '提交成功') {
+                    // 跳轉到結果頁面
+                    window.location.href = '/exam/result';
+                } else {
+                    alert('提交失敗，請稍後再試。');
+                }
+            })
+            .catch(error => {
+                console.error('提交失敗:', error);
+                alert('提交失敗，伺服器發生錯誤。');
+            });
+
+            // 隱藏模態框
+            $('#confirmModal').modal('hide');
+        };
+    </script>
+</body>
+</html>

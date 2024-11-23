@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>所有筆記</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
+    <link href="/static/imgs/BoundLess Learn.png" rel="shortcut icon">
+    <link href="/static/css/note.css" rel="stylesheet"/>
+    <link href="/static/css/main.css" rel="stylesheet"/> <div class="sidebar">
+    <a href="{{ url_for('main_bp.main') }}" class="back-link">&lt; 主畫面</a>
+    
+</div>
+    <!-- <p><a href="/note/create/form">新增筆記</a></p> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-width: 600px;
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .note {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .note h3 {
+            margin: 0 0 10px;
+            color: #007BFF;
+        }
+        .note p {
+            color: #555;
+        }
+        .note img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        .note-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .comment-form {
+            margin-top: 10px;
+        }
+        .comment-list {
+            margin-top: 15px;
+        }
+        .comment {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        // 檢查 Flash 訊息並顯示彈跳視窗
+        window.onload = function() {
+            const flashMessage = "{{ get_flashed_messages() | first }}";
+            if (flashMessage) {
+                alert(flashMessage);
+            }
+        };
+    </script>
+</head>
+<body>
+
+<h1>筆記分享區</h1>
+
+<div class="notes-container">
+    {% if notes %}
+        {% for note, comments_count in notes %}
+            <div class="note">
+                <h3>{{ note[2] }}</h3> <!-- 假設 note[2] 是標題 -->
+                <p>{{ note[3] }}</p> <!-- 假設 note[3] 是內容 -->
+                {% if note[6] %} <!-- 假設 note[6] 是圖片的 URL -->
+                    <img src="{{ url_for('static', filename='photos/' + note[6]) }}" alt="筆記圖片">
+                {% endif %}
+                <div class="note-footer">
+                    <span>{{ comments_count }} 則留言</span>
+                    <a href="{{ url_for('note_bp.view_note', note_id=note[0]) }}">查看</a>
+                </div>
+                <div class="comment-form">
+                    <form action="{{ url_for('note_bp.add_comment', note_id=note[0]) }}" method="post">
+                        <textarea name="comment_content" required placeholder="新增留言..." rows="3"></textarea>
+                        <button type="submit">留言</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>目前沒有筆記。</p>
+    {% endif %}
+</div>
+</body>
+</html>

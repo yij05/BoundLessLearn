@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會考歷屆試題測驗</title>
+    <link href="/static/imgs/BoundLess Learn.png" rel="shortcut icon">
+    <link href="/static/css/game.css" rel="stylesheet"/>
+    <link href="/static/css/main.css" rel="stylesheet"/>
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('main_bp.main') }}" class="back-link">&lt;主畫面</a>
+    </header>
+
+    <div class="content">
+
+        <button onclick="window.location.href='/exam/list'" type="button" class="exam">進入測驗</button>
+        <button onclick="window.location.href='/exam/chinese/score'" type="button" class="c_score">國文排行榜</button>
+        <button onclick="window.location.href='/exam/english/score'" type="button" class="e_score">英文排行榜</button>
+        <button onclick="window.location.href='/exam/math/score'" type="button" class="m_score">數學排行榜</button>
+
+    </div>
+
+    <footer>
+    </footer>
+</body>
+</html>

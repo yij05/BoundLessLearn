@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的筆記</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
+    <link href="/static/imgs/BoundLess Learn.png" rel="shortcut icon">
+    <link href="/static/css/newnote.css" rel="stylesheet"/>  
+    <link href="/static/css/main.css" rel="stylesheet"/>
+    <div class="sidebar">
+        <a href="{{ url_for('main_bp.main') }}" class="back-link">&lt; 主畫面</a>
+    </div>
+    <p><a href="/note/create/form">新增筆記</a></p>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-width: 600px;
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .note {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .note h3 {
+            margin: 0 0 10px;
+            color: #007BFF;
+        }
+        .note p {
+            color: #555;
+        }
+        .note img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        .note-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        // 檢查 Flash 訊息並顯示彈跳視窗
+        window.onload = function() {
+            const flashMessage = "{{ get_flashed_messages() | first }}";
+            if (flashMessage) {
+                alert(flashMessage);
+            }
+        };
+    </script>
+</head>
+<body>
+    <h1>我的筆記</h1>
+    
+    <div class="notes-container">
+        {% if notes %}
+            {% for note in notes %}
+                <div class="note">
+                    <h3><a href="{{ url_for('note_bp.view_note', note_id=note[0]) }}">{{ note[2] }}</a></h3> <!-- 筆記標題 -->
+                    <p>{{ note[3] }}</p> <!-- 筆記內容 -->
+                    {% if note[6] %} <!-- 假設 note[6] 是圖片的 URL -->
+                        <img src="{{ url_for('static', filename='photos/' + note[6]) }}" alt="筆記圖片">
+                    {% endif %}
+                    <div class="note-footer">
+                        <small>{{ note[4] }}</small> <!-- 創建時間 -->
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>目前沒有任何筆記。</p>
+        {% endif %}
+    </div>
+    
+</body>
+</html>
