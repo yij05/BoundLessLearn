@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ subject }} 詳細紀錄</title>
+    <link href="/static/imgs/BoundLess Learn.png" rel="shortcut icon">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/details.css" rel="stylesheet"/>
+    <link href="/static/css/main.css" rel="stylesheet"/>
+</head>
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('main_bp.main') }}">&lt;主畫面</a>
+        <h1>{{ subject }} 詳細紀錄</h1>
+    </header>
+    <main class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>得分</th>
+                    <th>日期</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for score in scores %}
+                <tr>
+                    <td>{{ score[0] }}</td>
+                    <td>{{ score[1] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
